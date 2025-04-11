@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CyberNest - Cryptography</title>
+    <style>
+        body { background: #121212; color: violet; font-family: JetBrains Mono, monospace; padding: 20px; }
+        h1 { color: violet; }
+        .tool-card { background: #1e1e1e; padding: 20px; margin: 20px 0; border-radius: 12px; border: 2px solid violet; box-shadow: 0 0 15px violet; }
+        textarea, input { width: 100%; padding: 10px; background: #2a2a2a; color: white; border: none; border-radius: 8px; margin-bottom: 10px; }
+        button { background: violet; color: black; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; }
+        .output-box { background: #292929; padding: 10px; border-radius: 8px; margin-top: 10px; white-space: pre-wrap; color: white; }
+    </style>
+</head>
+<body>
+<div style="padding: 1rem;"><a href="/" style="color:violet;font-weight:bold;text-decoration:none;">⬅ Back to Home</a></div>
+<h1>Cryptography Tool</h1>
+
+<div class="tool-card">
+    <h2>Encrypt</h2>
+    <form method="POST" action="/crypto/encrypt">
+        <textarea name="plain_text" rows="5" placeholder="Text to encrypt...">{{ plain_text }}</textarea>
+        <input name="key" placeholder="Encryption Key" value="{{ request.form.get('key', '') }}">
+        <button type="submit">Encrypt</button>
+    </form>
+    {% if encrypted_text %}
+    <div class="output-box"><h4>Encrypted:</h4><code>{{ encrypted_text }}</code></div>
+    {% endif %}
+</div>
+
+<div class="tool-card">
+    <h2>Decrypt</h2>
+    <form method="POST" action="/crypto/decrypt">
+        <textarea name="cipher_text" rows="5" placeholder="Encrypted text...">{{ cipher_text }}</textarea>
+        <input name="key" placeholder="Decryption Key" value="{{ request.form.get('key', '') }}">
+        <button type="submit">Decrypt</button>
+    </form>
+    {% if decrypted_text %}
+    <div class="output-box"><h4>Decrypted:</h4><code>{{ decrypted_text }}</code></div>
+    {% endif %}
+</div>
+</body>
+</html>

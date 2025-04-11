@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CyberNest - Digital Forensics</title>
+    <style>
+        body { background: #121212; color: tomato; font-family: sans-serif; padding: 20px; }
+        h1 { color: tomato; }
+        .tool-card { background: #1e1e1e; padding: 20px; margin: 20px 0; border-radius: 12px; box-shadow: 0 0 10px #ff910055; }
+        input[type="file"] { width: 100%; padding: 10px; background: #2a2a2a; color: white; border: none; border-radius: 8px; margin-bottom: 10px; }
+        button { background: tomato; color: black; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; }
+        .output-box { background: #292929; padding: 10px; border-radius: 8px; margin-top: 10px; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+<div style="padding: 1rem;"><a href="/" style="color:tomato;font-weight:bold;text-decoration:none;">⬅ Back to Home</a></div>
+<h1>Digital Forensics Tools</h1>
+
+<div class="tool-card">
+    <h2>Metadata Extractor</h2>
+    <form method="POST" action="/forensics/metadata" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <button type="submit">Extract Metadata</button>
+    </form>
+    {% if metadata_result %}
+    <div class="output-box"><h4>Metadata:</h4><ul>{% for k, v in metadata_result.items() %}<li><strong>{{ k }}:</strong> {{ v }}</li>{% endfor %}</ul></div>
+    {% endif %}
+</div>
+
+
+</div>
+</body>
+</html>
